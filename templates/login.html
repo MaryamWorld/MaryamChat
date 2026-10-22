@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Log in · MaryamsChat{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block content %}
+<main class="auth-card">
+<h1 class="brand">MaryamChat</h1>
+  <p class="muted">Log in to continue to your conversations.</p>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}<div class="alert {{ category }}" role="alert">{{ message }}</div>{% endfor %}
+  {% endwith %}
+  {% if error %}<div class="alert error" role="alert">{{ error }}</div>{% endif %}
+  <form method="post" action="{{ url_for('login') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" value="{{ username }}" autocomplete="username" autocapitalize="none" required autofocus>
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+    <button class="btn primary block" type="submit">Log in</button>
+  </form>
+  <p class="muted center">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+</main>
+{% endblock %}

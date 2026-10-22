@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}MaryamsChat{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+{% block content %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

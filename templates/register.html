@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Create account · ChatWave{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block content %}
+<main class="auth-card">
+  <h1 class="brand">MaryamsChat</h1>
+  <p class="muted">Create an account to start chatting.</p>
+  {% if errors %}
+  <div class="alert error" role="alert"><ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul></div>
+  {% endif %}
+  <form method="post" action="{{ url_for('register') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" value="{{ form.get('username', '') }}" autocomplete="username" autocapitalize="none" maxlength="20" required autofocus>
+    <label for="display_name">Display name <span class="muted">(optional)</span></label>
+    <input id="display_name" name="display_name" type="text" value="{{ form.get('display_name', '') }}" maxlength="40">
+    <label for="password">Password <span class="muted">(min. 8 characters)</span></label>
+    <input id="password" name="password" type="password" autocomplete="new-password" required>
+    <label for="confirm">Confirm password</label>
+    <input id="confirm" name="confirm" type="password" autocomplete="new-password" required>
+    <button class="btn primary block" type="submit">Create account</button>
+  </form>
+  <p class="muted center">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+</main>
+{% endblock %}
